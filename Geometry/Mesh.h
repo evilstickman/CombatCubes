@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "GraphicsObject.h"
+#include "Material.h"
 // store mesh as list of vertices with normals and uvs, and list of face indices - triangles. Problem is need to calculate vertex normals,
 
 class Mesh
@@ -23,5 +24,7 @@ public:
 
     Vertex vMin, vMax;
     float xDist, yDist, zDist;
+
+    CMaterial m_matlib;
 };
 

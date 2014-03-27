@@ -65,7 +65,6 @@ void GraphicsObject::Draw()
 
      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_nIBID);
      glPushMatrix();
-     CMaterial::matLib[m_nMaterialId].ApplyMaterial();
      glDrawElements(GL_TRIANGLES,m_faceList.size()*3,GL_UNSIGNED_INT,0);
      glPopMatrix();
     /*glPushMatrix();

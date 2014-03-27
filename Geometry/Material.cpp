@@ -3,8 +3,6 @@
 #include <gl/gl.h>
 
 
-std::vector<CMaterial> CMaterial::matLib;
-
 CMaterial::CMaterial(void)
 {
 }
