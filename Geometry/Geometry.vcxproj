@@ -51,6 +51,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Users\Matt\Dropbox\gamedev\CombatCubes\external_libraries\glew-1.11.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -58,6 +59,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Matt\Dropbox\gamedev\CombatCubes\external_libraries\glew-1.11.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

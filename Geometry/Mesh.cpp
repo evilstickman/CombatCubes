@@ -4,7 +4,6 @@
 #include <gl/gl.h>
 #include "Vertex.h"
 #include "Face.h"
-#include "Material.h"
 
 Mesh::Mesh(void)
 {
@@ -128,7 +127,7 @@ void Mesh::LoadAsciiFormat( std::ifstream &fIn)
        fIn >> mat.m_sTexture1;
 	   // - texture 2 name
        fIn >> mat.m_sTexture2;
-       CMaterial::matLib.push_back(mat);
+       m_matlib.matLib.push_back(mat);
     }
 }
 
@@ -203,6 +202,7 @@ void Mesh::Draw()
 {
     for(std::vector<GraphicsObject *>::iterator iter = m_objectList.begin(); iter != m_objectList.end(); ++iter)
     {
+      this->m_matlib.matLib[(*iter)->m_nMaterialId].ApplyMaterial();
         (*iter)->Draw();
     }
     glPopMatrix();

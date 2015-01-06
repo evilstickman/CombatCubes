@@ -22,6 +22,6 @@ public:
     std::string m_sTexture1;
     std::string m_sTexture2;
 
-    static std::vector<CMaterial> matLib;
+    std::vector<CMaterial> matLib;
 };
 

@@ -73,7 +73,8 @@
       <AdditionalOptions>/validate_manifest %(AdditionalOptions)</AdditionalOptions>
     </Manifest>
     <PostBuildEvent>
-      <Command>copy "..\art\*.*" "..\bin\"</Command>
+      <Command>copy "..\art\*.*" "..\bin\"
+copy "..\external_libraries\glew-1.11.0\bin\Release\Win32\*.dll" "..\bin\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>del ..\bin\*.exe</Command>
