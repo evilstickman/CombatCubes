@@ -1,32 +1,48 @@
 ground.txt
 0.0 0.0 0.0
+base_shader
 ground.txt
 1.0 0.0 0.0
+base_shader
 ground.txt
 2.0 0.0 0.0
+base_shader
 ground.txt
-3.0 0.0 0.0
-forest4.txt
 0.0 0.0 1.0
+base_shader
+forest4.txt
+3.0 0.0 0.0
+base_shader
 forest4.txt
 1.0 0.0 1.0
+base_shader
 forest4.txt
 2.0 0.0 1.0
+base_shader
 forest4.txt
 3.0 0.0 1.0
+base_shader
 forest4.txt
 0.0 0.0 2.0
+base_shader
 forest4.txt
 1.0 0.0 2.0
+base_shader
 forest4.txt
 2.0 0.0 2.0
+base_shader
 forest4.txt
 3.0 0.0 2.0
+base_shader
 mountain.txt
 0.0 0.0 3.0
+base_shader
 mountain.txt
 1.0 0.0 3.0
+base_shader
 mountain.txt
 2.0 0.0 3.0
+base_shader
 mountain.txt
 3.0 0.0 3.0
+base_shader

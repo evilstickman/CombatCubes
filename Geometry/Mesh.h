@@ -15,7 +15,10 @@ public:
     void LoadFromFile( std::string filename );
     void LoadTxtFormat( std::ifstream &fIn);
     void LoadAsciiFormat( std::ifstream &fIn);
+    void SetShader(Shader *shader);
     void Draw();
+
+    void ReloadShaders();
 
 
     void AdjustMinMax(float x, float y, float z);
@@ -26,5 +29,7 @@ public:
     float xDist, yDist, zDist;
 
     CMaterial m_matlib;
+
+    Shader *m_shader;
 };
 

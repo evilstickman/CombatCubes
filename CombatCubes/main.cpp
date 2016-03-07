@@ -64,10 +64,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
   GraphicsApplication *gApp = new OpenGLWindowsApplication(WIDTH, HEIGHT,
     fullscreen, hInstance,
     WndProc, iCmdShow, L"Combat Cubes");
+  testMap->SetGraphicsApp(gApp);
 
   // TODO: load game resources here
   // - load geometry
-  //testObject.LoadFromFile("C:\\Users\\Evil Stick Man\\Documents\\Visual Studio 2010\\Projects\\CombatCubes\\bin\\forest.txt");
   //testObject.LoadFromFile("forest.txt");
   //testObject.LoadFromFile("forest4.txt");
   testMap->LoadFromFile("level.txt");
@@ -231,6 +231,11 @@ void ProcessInput()
     c.m_eye.m_vert[2] -= 0.1;
     c.m_lookAt.m_vert[2] -= 0.1;
   }
+
+  if (kbm.IsKeyPressed('s')||kbm.IsKeyPressed('S'))
+  {
+    testMap->ReloadShaders();
+  }
 }
 
 
@@ -290,7 +295,6 @@ void draw()
   // to the user with the utmost alacrity. For now I want to create a grid that
   // makes it easy to see one's location in the world. I'll move it into a 
   // controlling object later, enabled only for debug or something.
-
   g.Draw();
   
   glLightfv(GL_LIGHT0, GL_POSITION, c.m_eye.m_vert);

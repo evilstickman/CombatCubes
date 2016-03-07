@@ -35,7 +35,9 @@
  *  
  *****************************************************************************/
 #include "graphicsapplication.h"
+#include "Geometry\OpenGlShader.h"
 #include <windows.h>
+#include "external_libraries\glew-1.11.0\include\GL\glew.h"
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <string>
@@ -54,6 +56,9 @@ public:
 
   // Defined inline because this is pretty much a basic mask
   virtual inline void SwapAppBuffers() { SwapBuffers(m_hdc);}
+
+
+  virtual Shader *GetShaderObject(std::string vert_file, std::string frag_file);
 
 protected:
   virtual void Initialize();

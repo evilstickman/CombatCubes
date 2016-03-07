@@ -9,6 +9,8 @@ public:
     void SetXlate(float x  = 0.0, float y = 0.0, float z = 0.0);
 
     void draw();
+
+    void ReloadShaders();
     
     float m_transformation[16];
 

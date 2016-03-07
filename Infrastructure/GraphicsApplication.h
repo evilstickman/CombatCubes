@@ -48,6 +48,7 @@
 #define WNDPROC int
 #endif
 
+#include "Geometry/Shader.h"
 #include <String>
 
 class GraphicsApplication
@@ -65,6 +66,8 @@ public:
 
   // Defined inline because this is pretty much a basic mask
   virtual inline void SwapAppBuffers() = 0;
+
+  virtual Shader *GetShaderObject(std::string vert_file, std::string frag_file) = 0;
 
 protected:
   virtual void Initialize() = 0;

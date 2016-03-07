@@ -27,3 +27,8 @@ void SceneObject::draw()
         m_baseMesh->Draw();
     glPopMatrix();
 }
+
+void SceneObject::ReloadShaders()
+{
+  m_baseMesh->ReloadShaders();
+}

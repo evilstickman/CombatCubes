@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include <fstream>
 #include <windows.h>
+#include <GL/glew.h>
 #include <gl/gl.h>
 #include "Vertex.h"
 #include "Face.h"
@@ -198,13 +199,29 @@ void Mesh::LoadTxtFormat( std::ifstream &fIn)
   }
 }
 
+
+void Mesh::SetShader(Shader *shader)
+{
+  m_shader = shader;
+}
+
 void Mesh::Draw()
 {
+
+  glEnable(GL_LIGHTING);
+  GLfloat lightpos[] = { -10, 5, -10., 0. };
+  GLfloat white[] = { 1.0, 1.0, 1.0, 1.0 };
+  glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+  glLightfv(GL_LIGHT0, GL_AMBIENT_AND_DIFFUSE, white);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, white);
   for(std::vector<GraphicsObject *>::iterator iter = m_objectList.begin(); iter != m_objectList.end(); ++iter)
   {
     this->m_matlib.matLib[(*iter)->m_nMaterialId].ApplyMaterial();
+    glUseProgram(m_shader->get_program_object_handle());
     (*iter)->Draw();
+    glUseProgram(0);
   }
+  glDisable(GL_LIGHTING);
   glPopMatrix();
 }
 
@@ -238,4 +255,9 @@ void Mesh::AdjustMinMax(float x, float y, float z)
   xDist = vMax.buf()[0] - vMin.buf()[0];
   yDist = vMax.buf()[1] - vMin.buf()[1];
   zDist = vMax.buf()[2] - vMin.buf()[2];
+}
+
+void Mesh::ReloadShaders()
+{
+  m_shader->load_and_compile_shaders();
 }

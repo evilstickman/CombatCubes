@@ -2,6 +2,9 @@
 #include <vector>
 #include "Vertex.h"
 #include "Face.h"
+#include "Shader.h"
+
+
 class GraphicsObject
 {
 public:

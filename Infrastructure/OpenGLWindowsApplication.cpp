@@ -196,3 +196,8 @@ void OpenGLWindowsApplication::DisplayWindow(void)
 {
   
 }
+
+Shader *OpenGLWindowsApplication::GetShaderObject(std::string vert_file, std::string frag_file)
+{
+  return new OpenGlShader(vert_file, frag_file);
+}
