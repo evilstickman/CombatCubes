@@ -44,7 +44,7 @@ void main (void)
 	vec4 V = normalize(eyePos);
 	vec4 h = normalize(L + V);
 	float spec = max(dot(N, h), 0.0);
-	vec4 specular = gl_FrontMaterial.specular * pow(spec, gl_FrontMaterial.shininess);
+	vec4 specular = min(vec4(1.0),gl_FrontMaterial.specular * pow(spec, gl_FrontMaterial.shininess));
    gl_FragColor = dot(L, N) * gl_FrontMaterial.diffuse + specular;  
-   gl_FragColor = gl_FrontMaterial.shininess.rrrr;
+   //gl_FragColor = gl_FrontMaterial.shininess.rrrr;
 }   

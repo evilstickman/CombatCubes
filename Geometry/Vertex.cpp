@@ -25,9 +25,9 @@ Vertex::~Vertex(void)
 void Vertex::addNormal(float x, float y, float z)
 { 
     float mag = 0.0;
-    m_n[0] +=x;  
-    m_n[1] +=y;  
-    m_n[2] +=z; 
+    m_n[0] = x;// += x;
+    m_n[1] = y;// += y;
+    m_n[2] = z;// += z;
 
     mag = m_n[0] * m_n[0] + m_n[1] * m_n[1] + m_n[2] * m_n[2];
     mag = sqrt(mag);
