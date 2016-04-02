@@ -6,7 +6,7 @@
 #include "Vertex.h"
 #include "Face.h"
 
-Mesh::Mesh(void)
+Mesh::Mesh(void) : m_shader(NULL)
 {
 }
 
@@ -217,9 +217,16 @@ void Mesh::Draw()
   for(std::vector<GraphicsObject *>::iterator iter = m_objectList.begin(); iter != m_objectList.end(); ++iter)
   {
     this->m_matlib.matLib[(*iter)->m_nMaterialId].ApplyMaterial();
-    glUseProgram(m_shader->get_program_object_handle());
+    if (m_shader != NULL)
+    {
+      glUseProgram(m_shader->get_program_object_handle());
+    }
     (*iter)->Draw();
-    glUseProgram(0);
+
+    if (m_shader != NULL)
+    {
+      glUseProgram(0);
+    }
   }
   glDisable(GL_LIGHTING);
   glPopMatrix();

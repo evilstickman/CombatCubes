@@ -14,11 +14,13 @@ using namespace std;
 // a renderer in the future.
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <string>
 #include "Infrastructure/Camera.h"
 #include "Infrastructure/Grid.h"
 #include "Infrastructure/KeyboardManager.h"
 #include "Infrastructure/LevelMap.h"
 #include "Geometry\Mesh.h"
+#include "Player.h"
 
 // Set our default window to 640x480. This will eventually be set via 
 // configuration
@@ -45,7 +47,10 @@ Camera c(Point(-20,10,-20.0), Point(0,0,0), Point(0.0,1.0,0.0));
 Mesh testObject;
 LevelMap * testMap = new LevelMap();
 
-  Grid g;
+Grid g;
+
+
+Player *mainPlayer = new Player();
 
 
 // Windows uses WinMain for its entry point. So for windows, give it what it
@@ -71,6 +76,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
   //testObject.LoadFromFile("forest.txt");
   //testObject.LoadFromFile("forest4.txt");
   testMap->LoadFromFile("level.txt");
+
+  Mesh *tankMesh = new Mesh();
+  tankMesh->LoadFromFile("tank.txt");
+
+  string vert_shader_name = "shaders\\base_unit_shader.vert";
+  string frag_shader_name = "shaders\\base_unit_shader.frag";
+  SceneObject *s = NULL;
+  Shader *shader = testMap->GetGraphicsApp()->GetShaderObject(vert_shader_name, frag_shader_name);
+  shader->load_and_compile_shaders();
+  tankMesh->SetShader(shader);
+  
+  SceneObject *tank = new SceneObject(tankMesh);
+  tank->SetXlate(0, 0.25, 0);
+  Unit *tankUnit = new Unit();
+  tankUnit->addModel(tank);
+  mainPlayer->addUnit(tankUnit);
 
   //   - create geometry object
   //   - load vertices from file
@@ -271,8 +292,8 @@ void draw()
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(-20, 20, -20, 20, 1, 1000);
-  //gluPerspective(45.0,(float)WIDTH/(float)HEIGHT, 1, 1000);
+  //glOrtho(-20, 20, -20, 20, 1, 1000);
+  gluPerspective(45.0,(float)WIDTH/(float)HEIGHT, 1, 1000);
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
@@ -288,7 +309,7 @@ void draw()
   // Then, make it pretty.
   c.SetCameraMatrix();
 
-  glClearColor( 0.5, 0.5, 0.5, 0 );
+  glClearColor( 0.1, 0.1, 0.1, 0 );
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
   // welcome to geometry land, where everything we choose to draw is displayed 
@@ -296,6 +317,7 @@ void draw()
   // makes it easy to see one's location in the world. I'll move it into a 
   // controlling object later, enabled only for debug or something.
   g.Draw();
+
   
   glLightfv(GL_LIGHT0, GL_POSITION, c.m_eye.m_vert);
   
@@ -307,6 +329,12 @@ void draw()
 
   //testObject.Draw();
   testMap->Draw();
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  // Draw the player
+  mainPlayer->drawPlayer();
+
 }
 
 #endif

@@ -103,6 +103,8 @@ copy "..\external_libraries\glew-1.11.0\bin\Release\Win32\*.dll" "..\bin\"</Comm
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Geometry\Geometry.vcxproj">
@@ -120,6 +122,10 @@ copy "..\external_libraries\glew-1.11.0\bin\Release\Win32\*.dll" "..\bin\"</Comm
       <Project>{3984852c-1c5c-4b52-b887-f6ef23888d86}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
