@@ -222,7 +222,7 @@ void Mesh::Draw()
       glUseProgram(m_shader->get_program_object_handle());
     }
     (*iter)->Draw();
-
+    //(*iter)->DrawNormals();
     if (m_shader != NULL)
     {
       glUseProgram(0);

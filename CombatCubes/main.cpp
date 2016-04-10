@@ -316,7 +316,7 @@ void draw()
   // to the user with the utmost alacrity. For now I want to create a grid that
   // makes it easy to see one's location in the world. I'll move it into a 
   // controlling object later, enabled only for debug or something.
-  g.Draw();
+  //g.Draw();
 
   
   glLightfv(GL_LIGHT0, GL_POSITION, c.m_eye.m_vert);

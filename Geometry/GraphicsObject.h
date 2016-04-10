@@ -19,6 +19,7 @@ public:
     void SetMaterialID(int id);
     
     void Draw();
+    void DrawNormals();
     void SetXlate(float x  = 0.0, float y = 0.0, float z = 0.0);
 
     void CreateVertexBuffer();

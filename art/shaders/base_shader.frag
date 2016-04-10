@@ -39,13 +39,15 @@ varying vec4 eyePos;
 void main (void)  
 {
 	vec4 L = vertexCoord-gl_LightSource[0].position;
-	//L = normalize(L);
+	L = normalize(L);
 	vec4 N = normalize(fragmentNormal);
 	vec4 V = normalize(eyePos);
 	vec4 h = normalize(L + V);
 	float spec = max(dot(N, h), 0.0);
-	vec4 specular = min(vec4(1.0),gl_FrontMaterial.specular * pow(spec, gl_FrontMaterial.shininess));
-   gl_FragColor = max(vec4(0.0), dot(L, N)) * gl_FrontMaterial.diffuse + specular;  
+	vec4 specular = max(vec4(0.0),gl_FrontMaterial.specular * pow(spec, gl_FrontMaterial.shininess));
+   gl_FragColor = gl_FrontMaterial.ambient + max(vec4(0.0), dot(N, L)) * gl_FrontMaterial.diffuse + specular;  
    gl_FragColor.a = 1.0;
    //gl_FragColor = gl_FrontMaterial.shininess.rrrr;
+   //gl_FragColor = max(vec4(0.0), dot(L, N)) * gl_FrontMaterial.diffuse;
+   //gl_FragColor.a = 1.0;
 }   

@@ -84,6 +84,31 @@ void GraphicsObject::Draw()
     glPopMatrix();*/
 }
 
+void GraphicsObject::DrawNormals() {
+
+  glColor3d(1.0, 1.0, 1.0);
+  glBegin(GL_LINES);
+  for (unsigned int i = 0; i < m_faceList.size(); ++i)
+  {
+    float center_x, center_y, center_z;
+    center_x = center_y = center_z = 0.0;
+    for (unsigned int j = 0; j < 3; ++j)
+    {
+      center_x += m_vertList[m_faceList[i].m_verts[j]].m_v[0];
+      center_y += m_vertList[m_faceList[i].m_verts[j]].m_v[1];
+      center_x += m_vertList[m_faceList[i].m_verts[j]].m_v[2];
+    }
+    center_x = center_x / 3.0;
+    center_y = center_y / 3.0;
+    center_z = center_z / 3.0;
+    glPushMatrix();
+      glVertex3d(center_x, center_y, center_z);
+      glVertex3d((center_x + m_faceList[i].m_normals[0].m_v[0]), (center_y + m_faceList[i].m_normals[0].m_v[1]), (center_z + m_faceList[i].m_normals[0].m_v[2]));
+    glPopMatrix();
+  }
+  glEnd();
+}
+
 void GraphicsObject::SetMaterialID(int id)
 {
     m_nMaterialId = id;
